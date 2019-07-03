@@ -6,20 +6,31 @@
 /*   By: zamaseko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 11:35:55 by zamaseko          #+#    #+#             */
-/*   Updated: 2019/07/02 14:42:18 by zamaseko         ###   ########.fr       */
+/*   Updated: 2019/07/03 17:18:38 by zamaseko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 static int	ft_reader(char *s, char **line)
 {
 	int		i;
-	char	*read;
+	char	*sav;
 
 	i = 0;
 	{
-		while (s[i] && s[i] != '\0' && s[i] != '\n')
+		while (s[i] != '\0' && s[i] != '\n')
 			i++;
-		if (s == '\n')
+		if (s[i] == '\n')
 		{
+		 
 		}
-	return (1)
+	return (1);
+	}
+}
+
+int	get_next_line(const int fd, char **line)
+{
+	int fd;
+	char buf[];
+	char ;
+	char ;
+}
