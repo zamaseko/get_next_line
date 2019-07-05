@@ -6,7 +6,7 @@
 /*   By: zamaseko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 11:35:55 by zamaseko          #+#    #+#             */
-/*   Updated: 2019/07/04 17:58:55 by zamaseko         ###   ########.fr       */
+/*   Updated: 2019/07/05 16:21:31 by zamaseko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	getmealine(char **s, char **line, int fd)
 			stmp = s[fd];
 		}
 		if (s[i] == '\0')
-		ft_strclr(s[fd]);
+		ft_strdel(&s[fd]);
 	}
 	return (1);
 }
@@ -45,13 +45,15 @@ int	get_next_line(const int fd, char **line)
 		return (-1);
 	while ((reader = (read(fd, buf, BUF_SIZE) < 0)))
 		return (-1);
-	buf[fd] = '\0';
-		if (s[fd] == NULL)
-		s[fd] = ft_strnew(1);
-		tmps = ft_strjoin(s[fd], buf);
-		free(s[fd]);
-		if (ft_strchr(s[fd], '\n'))
-			break ;
+		while (buf[fd] == '\0')
+		{
+			if (s[fd] == NULL)
+			s[fd] = ft_strnew(1);
+			tmps = ft_strjoin(s[fd], buf);
+			free(s[fd]);
+			if (ft_strchr(s[fd], '\n'))
+				break ;
+		}
 		if (reader < 0)
 			return (-1);
 		else if (reader == 0 && s[fd] == NULL && s[fd] == '\0')
