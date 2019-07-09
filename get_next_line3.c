@@ -6,13 +6,13 @@
 /*   By: zamaseko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:31:02 by zamaseko          #+#    #+#             */
-/*   Updated: 2019/07/08 16:33:27 by zamaseko         ###   ########.fr       */
+/*   Updated: 2019/07/09 08:49:31 by zamaseko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		read_cache(const int fd, char *cache)
+int			read_cache(const int fd, char *cache)
 {
 	char	*h;
 	char	w[BUF_SIZE + 1];
@@ -31,7 +31,7 @@ int		read_cache(const int fd, char *cache)
 		return (2);
 }
 
-int		save_line(char *c, char **line)
+int			save_line(char *c, char **line)
 {
 	long	e;
 	char	*h;
@@ -46,12 +46,12 @@ int		save_line(char *c, char **line)
 		*line = ft_strdup(c);
 }
 
-int		get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	static char	*c[1024];
 	static int	e;
 
-	(!c[fd]) ? ft_strnew(0) && e = 2: 0;
+	if (!c[fd] ? ft_strnew(0) && e = 2: 0;
 	(e == 1) ? e = 2 : 0;
 	while (e == 2)
 		e = read_cache(fd, c[fd]);
