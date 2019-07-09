@@ -6,107 +6,61 @@
 /*   By: zamaseko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 11:35:55 by zamaseko          #+#    #+#             */
-/*   Updated: 2019/07/06 06:24:16 by zamaseko         ###   ########.fr       */
+/*   Updated: 2019/07/09 16:08:29 by zamaseko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-//static int ft_holder(char **s, char **line, int fd)
-/*{
-	char *stmp;
-	int i;
 
-	i = 0;
-	*line = ft_strsub(s[fd], 0, i);
-	stmp = ft_strdup(s[fd] + i + 1);
-	free(s[fd]);
-	s[fd] = stmp;
-	if (s[fd] == '\0')
-		ft_strdel(&s[fd]);
-	return (0);
-}*/
-// int	reader(i)
-static int	getmealine(char **s, char **line, int fd)
+I GIVE UP!!!!!!!!!!!!!!!!!!!!!!!!!!!! ;
+
+
+int			read_cache(const int fd, char *cache)
 {
-	char *stmp;
-	int		i;
+	char	*h;
+	char	w[BUFF_SIZE + 1];
+	long	r;
 
-	i = 0;
-	{
-		while (s[fd][i] != '\0' && s[fd][i] != '\n')
-			i++;
-		if (s[fd][i] == '\n')
-		{
-	//		ft_holder(&s[fd], line, fd);
-			*line = ft_strsub(s[fd], 0, i);
-			stmp =  ft_strdup(s[fd] + i + 1);
-			free(s[fd]);
-			s[fd] = stmp;
-			if (s[fd] == '\0')
-				ft_strdel(&s[fd]);
-		}
-		else if (s[fd] == '\0')
-		ft_strdup(s[fd]);
-		free(*s);
-	}
-	return (1);
+	ft_memset(w, '\0', BUFF_SIZE + 1);
+	h = cache;
+	r = read(fd, w, BUFF_SIZE);
+	cache = ft_strjoin(cache, w);
+	ft_strdel(&h);
+	if (r == -1 || r == 0)
+		return ((r == -1) ? -1 : 0);
+	else if (ft_strchr(w, '\n'))
+		return (1);
+	else
+		return (2);
 }
 
-int be_safe(const int fd, char *line)
+int			save_line(char *c, char **line)
 {
-	int checker;
-	char buf[BUF_SIZE + 1];
+	long	e;
+	char	*h;
 
-	if (fd < 0 || !line)
-		return (-1);
-	if ((checker = (read(fd, buf, BUF_SIZE < 0))))
-		return (-1);
+	h = c;
+	e = ft_strchr(c, '\n') - c;
+	if (ft_strchr(c, '\n'))
+	{
+		*line = ft_strsub(c, 0, e);
+	}
+	else
+		*line = ft_strdup(c);
 }
 
-int	get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
-	int checker;
-	static char s[1024];
-	char buf[BUF_SIZE + 1];
-	char *tmps;
+	static char	*c[1024];
+	static int	e;
 
-	checker = read(fd, buf, BUF_SIZE);
-//	if (fd < 0 || !line)
-//		return (-1);
-//	if ((reader = (read(fd, buf, BUF_SIZE) < 0)))
-//		return (-1);
-	be_safe(fd, *line);
-	while (buf[fd] == '\0')
-	{
-		if (s[fd] == 0)
-		tmps = ft_strjoin(&s[fd], buf);
-		free(&s[fd]);
-		if (ft_strchr(&s[fd], '\n'))
-			break ;
-	}
-	if (checker < 0)
-		return (-1);
-	else if (checker == 0 && s[fd] == 0 && s[fd] == '\0')
+//  (!c[fd] ? ft_strnew(0) && e = 2: 0;
+	if (!c[fd])
+		ft_strnew(0);
+		e = 0;
 		return (0);
-	return (getmealine(s, line, fd));
+	(e == 1) ? e = 2 : 0;
+	while (e == 2)
+		e = read_cache(fd, c[fd]);
+	(c[fd]) ? save_line(c[fd], line) : 0;
 }
-/*
-#include <stdio.h>
-#include <fcntl.h>
-int			main()
-{
-	char	*line = NULL;
-	int 	fd;
-	int 	output;
-
-	fd = open( "bible.txt", O_RDONLY);
-	output = 1;
-	while (output > 0)
-	{
-		output = get_next_line(fd, &line);
-		printf("[%d] line: %s", output, line);
-		ft_strdel(&line);
-		line = NULL;
-	}
-	return (0);
-}*/
