@@ -6,14 +6,11 @@
 /*   By: zamaseko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 11:35:55 by zamaseko          #+#    #+#             */
-/*   Updated: 2019/07/09 16:08:29 by zamaseko         ###   ########.fr       */
+/*   Updated: 2019/07/10 14:24:10 by zamaseko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-I GIVE UP!!!!!!!!!!!!!!!!!!!!!!!!!!!! ;
-
 
 int			read_cache(const int fd, char *cache)
 {
@@ -44,6 +41,7 @@ int			save_line(char *c, char **line)
 	if (ft_strchr(c, '\n'))
 	{
 		*line = ft_strsub(c, 0, e);
+		h = ft_strdup(c);
 	}
 	else
 		*line = ft_strdup(c);
