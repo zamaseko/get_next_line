@@ -6,7 +6,7 @@
 /*   By: zamaseko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:10:17 by zamaseko          #+#    #+#             */
-/*   Updated: 2019/07/19 18:52:21 by zamaseko         ###   ########.fr       */
+/*   Updated: 2019/07/21 14:39:53 by zamaseko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ int		read_in(const int fd, char **s)
 	return (1);
 }
 
+int		in_line(char *sub, char **line)
+{
+	char *ss;
+	int i;
+
+	i = 0;
+	*line = ft_strsub(sub,)
+}
 int		get_next_line(const int fd, char **line)
 {
 	static char *s[1024];
